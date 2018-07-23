@@ -1,6 +1,6 @@
 {
-  "name": "react-bulma-components",
-  "version": "1.5.0",
+  "name": "campjefferson-react-bulma-components",
+  "version": "1.0.1",
   "description": "React components for Bulma framework",
   "main": "dist",
   "scripts": {
@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/couds/react-bulma-components.git"
+    "url": "git+https://github.com/campjefferson/react-bulma-components.git"
   },
   "keywords": [
     "react",
@@ -37,9 +37,9 @@
   "author": "John Benavides",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/couds/react-bulma-components/issues"
+    "url": "https://github.com/campjefferson/react-bulma-components/issues"
   },
-  "homepage": "https://github.com/couds/react-bulma-components#readme",
+  "homepage": "https://github.com/campjefferson/react-bulma-components#readme",
   "dependencies": {
     "bulma": "0.7.1",
     "classnames": "2.2.5"

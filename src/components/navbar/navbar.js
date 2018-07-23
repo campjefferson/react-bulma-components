@@ -12,18 +12,19 @@ import Link from './components/link';
 import Container from './components/container';
 import CONSTANTS from '../../constants';
 
-const colors = [null].concat(Object.keys(CONSTANTS.COLORS).map(key => CONSTANTS.COLORS[key]));
-
+const colors = [null].concat(
+  Object.keys(CONSTANTS.COLORS).map(key => CONSTANTS.COLORS[key])
+);
 
 export default class Navbar extends React.PureComponent {
-  static Brand = Brand
-  static Burger = Burger
-  static Menu = Menu
-  static Item = Item
-  static Dropdown = Dropdown
-  static Link = Link
-  static Divider = Divider
-  static Container = Container
+  static Brand = Brand;
+  static Burger = Burger;
+  static Menu = Menu;
+  static Item = Item;
+  static Dropdown = Dropdown;
+  static Link = Link;
+  static Divider = Divider;
+  static Container = Container;
 
   static propTypes = {
     children: PropTypes.node,
@@ -32,8 +33,8 @@ export default class Navbar extends React.PureComponent {
     transparent: PropTypes.bool,
     renderAs: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     fixed: PropTypes.oneOf(['top', 'bottom']),
-    color: PropTypes.oneOf(colors),
-  }
+    color: PropTypes.oneOf(colors)
+  };
 
   static defaultProps = {
     children: null,
@@ -42,8 +43,8 @@ export default class Navbar extends React.PureComponent {
     renderAs: 'nav',
     transparent: false,
     fixed: null,
-    color: null,
-  }
+    color: null
+  };
 
   static getDerivedStateFromProps(nextProps) {
     if (!canUseDOM) {
@@ -59,27 +60,28 @@ export default class Navbar extends React.PureComponent {
   }
 
   state = {
-    showMobileMenu: false,
-  }
+    showMobileMenu: false
+  };
 
   componentDidMount() {
     if (this.props.fixed) {
-      window.document.querySelector('html').classList.add(`has-navbar-fixed-${this.props.fixed}`);
+      window.document
+        .querySelector('html')
+        .classList.add(`has-navbar-fixed-${this.props.fixed}`);
     }
   }
 
-  // TODO: Remove this on future releases
-  componentWillReceiveProps(nextProps) {
-    Navbar.getDerivedStateFromProps(nextProps);
-  }
-
   componentWillUnmount() {
-    window.document.querySelector('html').classList.remove(`has-navbar-fixed-${this.props.fixed}`);
+    window.document
+      .querySelector('html')
+      .classList.remove(`has-navbar-fixed-${this.props.fixed}`);
   }
 
   toggleMenu = () => {
-    this.setState(({ showMobileMenu }) => ({ showMobileMenu: !showMobileMenu }));
-  }
+    this.setState(({ showMobileMenu }) => ({
+      showMobileMenu: !showMobileMenu
+    }));
+  };
 
   render() {
     const {
@@ -100,15 +102,20 @@ export default class Navbar extends React.PureComponent {
         className={classnames('navbar', className, {
           'is-transparent': transparent,
           [`is-fixed-${fixed}`]: fixed,
-          [`is-${color}`]: color,
+          [`is-${color}`]: color
         })}
       >
-        {React.Children.map(children, (child) => {
+        {React.Children.map(children, child => {
           if ([Brand].includes(child.type)) {
-            return React.cloneElement(child, { active: this.state.showMobileMenu, toggleMenu: this.toggleMenu });
+            return React.cloneElement(child, {
+              active: this.state.showMobileMenu,
+              toggleMenu: this.toggleMenu
+            });
           }
           if ([Menu].includes(child.type)) {
-            return React.cloneElement(child, { active: this.state.showMobileMenu });
+            return React.cloneElement(child, {
+              active: this.state.showMobileMenu
+            });
           }
           return child;
         })}
@@ -116,4 +123,3 @@ export default class Navbar extends React.PureComponent {
     );
   }
 }
-

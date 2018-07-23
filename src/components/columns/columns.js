@@ -5,7 +5,9 @@ import CONSTANTS from '../../constants';
 import Column from './components/column';
 import COLUMN_CONSTANTS from './constants';
 
-const breakpoints = [null].concat(Object.keys(CONSTANTS.BREAKPOINTS).map(key => CONSTANTS.BREAKPOINTS[key]));
+const breakpoints = [null].concat(
+  Object.keys(CONSTANTS.BREAKPOINTS).map(key => CONSTANTS.BREAKPOINTS[key])
+);
 
 export default class Columns extends PureComponent {
   static propTypes = {
@@ -27,8 +29,12 @@ export default class Columns extends PureComponent {
     /**
      * `true` you want the columns inside to be horizontaly centered
      */
-    centered: PropTypes.bool,
-  }
+    mobile: PropTypes.bool,
+    /**
+     * `true` you want the columns inside to be horizontaly centered
+     */
+    centered: PropTypes.bool
+  };
 
   static defaultProps = {
     children: null,
@@ -37,11 +43,12 @@ export default class Columns extends PureComponent {
     breakpoint: null,
     gapless: false,
     centered: false,
-    multiline: true,
-  }
+    multiline: false,
+    mobile: false
+  };
 
-  static Column = Column
-  static CONSTANTS = COLUMN_CONSTANTS
+  static Column = Column;
+  static CONSTANTS = COLUMN_CONSTANTS;
 
   render() {
     const {
@@ -51,17 +58,19 @@ export default class Columns extends PureComponent {
       gapless,
       multiline,
       centered,
+      mobile,
       ...props
     } = this.props;
     return (
       <div
         {...props}
         className={classNames(className, 'columns', {
-        [`is-${breakpoint}`]: breakpoint,
-        'is-gapless': gapless,
-        'is-multiline': multiline,
-        'is-centered': centered,
-      })}
+          [`is-${breakpoint}`]: breakpoint,
+          'is-gapless': gapless,
+          'is-multiline': multiline,
+          'is-centered': centered,
+          'is-mobile': mobile
+        })}
       >
         {children}
       </div>
