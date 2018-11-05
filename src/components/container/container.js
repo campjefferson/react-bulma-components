@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import CONSTANTS from '../../constants';
 
-const breakpoints = [null].concat(Object.keys(CONSTANTS.BREAKPOINTS).map(key => CONSTANTS.BREAKPOINTS[key]));
+const breakpoints = [null].concat(
+  Object.keys(CONSTANTS.BREAKPOINTS).map(key => CONSTANTS.BREAKPOINTS[key])
+);
 
 export default class Container extends PureComponent {
   static propTypes = {
@@ -12,8 +14,8 @@ export default class Container extends PureComponent {
     className: PropTypes.string,
     style: PropTypes.shape({}),
     breakpoint: PropTypes.oneOf(breakpoints),
-    renderAs: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  }
+    renderAs: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+  };
 
   static defaultProps = {
     fluid: false,
@@ -21,8 +23,8 @@ export default class Container extends PureComponent {
     breakpoint: null,
     className: '',
     style: {},
-    renderAs: 'div',
-  }
+    renderAs: 'div'
+  };
 
   render() {
     const {
@@ -39,7 +41,7 @@ export default class Container extends PureComponent {
         {...props}
         className={classnames('container', className, {
           'is-fluid': fluid,
-          [`is-${breakpoint}`]: breakpoint,
+          [`is-${breakpoint}`]: breakpoint
         })}
       >
         {children}
